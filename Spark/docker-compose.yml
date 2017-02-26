@@ -7,9 +7,6 @@ services:
         hostname: master
         command: 
             - "/usr/local/spark/sbin/start-all.sh"
-            - "&&"
-            - "/usr/sbin/sshd"
-            - "-D"
         tty: true
     slave1:
         volumes: 
