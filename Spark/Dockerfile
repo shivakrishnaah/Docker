@@ -7,6 +7,5 @@ RUN wget http://d3kbcqa49mib13.cloudfront.net/spark-2.1.0-bin-hadoop2.7.tgz -q \
 ENV PATH $PATH:/usr/local/spark/bin:/usr/local/spark/sbin
 ENV SPARK_HOME /usr/local/spark
 ENV SPARK_NO_DAEMONIZE false
-EXPOSE 7077 8080 8081 22 4040
 COPY ./* /usr/local/spark/conf/
 CMD ["/usr/sbin/sshd", "-D"]

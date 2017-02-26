@@ -3,15 +3,19 @@ services:
     master:
         volumes: 
             - ./logs:/usr/local/spark/logs:rw
-        image: "shivakrishnaah/spark:2.1.0"
+        image: shivakrishnaah/spark:2.1.0
         hostname: master
+        ports: 
+            - "8080:8080"
+            - "7077:7077"
+            - "6066:6066"
         command: 
             - "/usr/local/spark/sbin/start-all.sh"
         tty: true
     slave1:
         volumes: 
             - ./logs:/usr/local/spark/logs:rw
-        image: "shivakrishnaah/spark:2.1.0"
+        image: shivakrishnaah/spark:2.1.0
         hostname: slave1
         tty: true
         links:
@@ -19,7 +23,7 @@ services:
     slave2:
         volumes: 
             - ./logs:/usr/local/spark/logs:rw
-        image: "shivakrishnaah/spark:2.1.0"
+        image: shivakrishnaah/spark:2.1.0
         hostname: slave2
         tty: true
         links:
