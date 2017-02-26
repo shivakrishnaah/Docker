@@ -1,47 +1,29 @@
 version: '2'
 services:
     master:
+        volumes: 
+            - ./logs:/usr/local/spark/logs:rw
         image: "spark"
         hostname: master
-        # entrypoint:
-        #     - service
-        #     - sshd
-        #     - start
-        #     - "&&"
-        #     - bash
-        #     - "&&"
-        #     - /usr/local/spark/sbin/start-all.sh
-        #     - "&&"
-        #     - /usr/local/spark/sbin/start-master.sh
+        command: 
+            - "/usr/local/spark/sbin/start-all.sh"
+            - "&&"
+            - "/usr/sbin/sshd"
+            - "-D"
         tty: true
-        links:
-            - "slave1:slave1"
-            - "slave2:slave2"
     slave1:
+        volumes: 
+            - ./logs:/usr/local/spark/logs:rw
         image: "spark"
         hostname: slave1
-        # entrypoint: 
-        #     - service
-        #     - sshd
-        #     - start
-        #     - "&&"
-        #     - bash
-        #     - "&&"
-        #     - "/usr/local/spark/sbin/start-slave.sh"
-        #     - "master:7077"
         tty: true
-        links: 
-            - slave2:slave2
+        links:
+            - master
     slave2:
+        volumes: 
+            - ./logs:/usr/local/spark/logs:rw
         image: "spark"
         hostname: slave2
-        # entrypoint: 
-        #     - service
-        #     - sshd
-        #     - start
-        #     - "&&"
-        #     - bash
-        #     - "&&"
-        #     - "/usr/local/spark/sbin/start-slave.sh"
-        #     - "master:7077"
         tty: true
+        links:
+            - master
