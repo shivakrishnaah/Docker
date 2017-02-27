@@ -31,3 +31,4 @@ RUN sed -i "s/#UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/ss
     && printf "Host * \n\t StrictHostKeyChecking no" > /root/.ssh/config
 ENV JAVA_HOME=/usr/java/jdk1.8.0_121 JRE_HOME=/usr/java/jdk1.8.0_121/jre \
     CLASSPATH=$JAVA_HOME/lib:. PATH=$PATH:$JAVA_HOME/bin
+CMD ["/usr/sbin/sshd", "-D"]

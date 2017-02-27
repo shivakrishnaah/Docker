@@ -3,6 +3,7 @@ services:
     master:
         volumes: 
             - ./logs:/usr/local/spark/logs:rw
+            - .:/usr/local/spark/conf:ro
         image: shivakrishnaah/spark:2.1.0
         hostname: master
         ports: 
@@ -15,6 +16,7 @@ services:
     slave1:
         volumes: 
             - ./logs:/usr/local/spark/logs:rw
+            - .:/usr/local/spark/conf:ro
         image: shivakrishnaah/spark:2.1.0
         hostname: slave1
         tty: true
@@ -23,6 +25,7 @@ services:
     slave2:
         volumes: 
             - ./logs:/usr/local/spark/logs:rw
+            - .:/usr/local/spark/conf:ro
         image: shivakrishnaah/spark:2.1.0
         hostname: slave2
         tty: true
