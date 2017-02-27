@@ -4,6 +4,7 @@ master:
         - .:/usr/local/spark/conf:ro
     image: shivakrishnaah/spark:2.1.0
     hostname: master
+    container_name: master
     ports: 
         - "8080:8080"
         - "7077:7077"
@@ -16,9 +17,11 @@ slave:
         - ./logs:/usr/local/spark/logs:rw
         - .:/usr/local/spark/conf:ro
     image: shivakrishnaah/spark:2.1.0
+    # Hostname is not required as we need multiple of these
     command: 
         - "/usr/local/spark/sbin/start-slave.sh"
         - "spark://master:7077"
     tty: true
     links:
         - master
+
