@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- core-site.xml -->
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://namenode:8020/</value>
+    <!-- This is temporary one wont be used anywhere -->
+    </property>
+    <property>
+        <name>io.file.buffer.size</name>
+        <value>131072</value>
+    </property>
+</configuration>
